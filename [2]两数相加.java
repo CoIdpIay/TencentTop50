@@ -57,8 +57,8 @@ class Solution {
         ListNode temp1 = l1;
         ListNode temp2 = l2;
         // 定义一个变量temp3,用于辅助创建结果链表
-        ListNode temp3 = new ListNode(0);
-        ListNode res = temp3;
+        ListNode temp3 = new ListNode();
+        // 定义一个变量virtualHeadNode作为虚拟头节点,将其next指向真正的头节点
         ListNode virtualHeadNode = new ListNode();
         virtualHeadNode.next = temp3;
         // 定义一个变量extra用于记录当前位所加的和是否已经大于9
@@ -101,11 +101,11 @@ class Solution {
                 break;
                 // 如果至少一个链表没有遍历到尽头
             }else{
-                temp3.next = new ListNode(0);
+                temp3.next = new ListNode();
                 temp3 = temp3.next;
             }
         }
-        return virtaulHeadNode.next;
+        return virtualHeadNode.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
