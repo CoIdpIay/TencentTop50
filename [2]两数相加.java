@@ -59,12 +59,12 @@ class Solution {
         // 定义一个变量temp3,用于辅助创建结果链表
         ListNode temp3 = new ListNode(0);
         ListNode res = temp3;
+        ListNode virtualHeadNode = new ListNode();
+        virtualHeadNode.next = temp3;
         // 定义一个变量extra用于记录当前位所加的和是否已经大于9
         int extra = 0;
         // 定义一个变量sum用于保存当前位的结果
         int sum = 0;
-        // 定义一个变量counts用于在循环中辅助定位结果链表的头节点
-        int counts = 0;
 
         // 遍历两个链表,将对应位置相加
         // 如果相加的结果大于9,则将其取模后存放在输出链表的对应位置,同时将extra置为1,参与下一位的运算;
@@ -87,11 +87,6 @@ class Solution {
             }
 
             temp3.val = sum;
-            if(counts == 0){
-                // 头节点
-                res = temp3;
-            }
-            counts++;
             temp1 = temp1.next;
             temp2 = temp2.next;
 
@@ -110,7 +105,7 @@ class Solution {
                 temp3 = temp3.next;
             }
         }
-        return res;
+        return virtaulHeadNode.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
