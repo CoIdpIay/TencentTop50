@@ -31,6 +31,10 @@ class Solution {
         int col = matrix[0].length;  // 矩阵的列数
         int count = (Math.min(row, col) + 1) / 2;  // 矩阵的层数,它是由行列中的较小值决定的,并且单行或单列也能作为一层
         int i = 0; // 当前遍历的层数
+        List<Integer> list = new ArrayList<Integer>();
+        if(matrix == null || matrix.length == 0)
+    		return list;
+            
         //从外部向内部遍历，逐层打印数据
         while (i < count) {
             // 打印第i层元素时,一共分为以下四步:
