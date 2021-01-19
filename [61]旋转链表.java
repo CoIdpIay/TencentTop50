@@ -34,28 +34,30 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        ListNode dummyNode = new ListNode(0,head);  // 虚拟头结点用于遍历
         if(head == null){
             return null;
         }
-        if(head.next == null){
+        // 获得链表的长度,并且拿到最后一个结点
+        int len =1; // 链表的长度
+        ListNode end = head; // 最后的结点
+        while(end.next != null){
+            end = end.next;
+            len++;
+        }
+        // 如果是空链表,或者k为0或者,k是长度的整数倍,意味着翻转后的链表,头节点不变
+        if(head.next == null || k == 0 || k % len == 0){
             return head;
         }
-        while(k > 0){
-            // 遍历当前的链表的最后一个结点,将其放在链表的头部
-            head = dummyNode.next;
-            while(head.next.next != null){
-                head = head.next;
-            }
-
-            // 将最后一个结点即为head.next,将其放到最前
-            ListNode temp = head.next;
-            head.next = null;
-            temp.next = dummyNode.next;
-            dummyNode.next = temp;
-            k--;
+        ListNode dummyNode = new ListNode(0,head);  // 虚拟头结点用于遍历
+        ListNode temp = dummyNode;  // 待旋转点的上一个结点
+        // 拿到旋转结点的上一个结点,如果k大于len,则取模后遍历
+        for(int i =0;i< len - (k%len);i++){
+            temp = temp.next;
         }
-        return dummyNode.next;
+        dummyNode.next = temp.next;
+        temp.next = null;
+        end.next = head;   
+        return dummyNode.next; 
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
